@@ -3,15 +3,14 @@ import { A11y } from '@react-three/a11y'
 import { useRef, useState, Suspense } from 'react'
 import useStore from '@/helpers/store'
 import Road from '@/entities/Road'
-import Camera from '@/components/Camera/Camera'
+import Camera from '@/entities/Camera'
 import BaseLights from '@/entities/BaseLights'
-import Cube from '@/entities/Cube'
 import Background from '@/entities/Background'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, SMAA } from '@react-three/postprocessing'
 import { Color } from 'three'
 
 
-const TestShader = (props) => {
+const Home = (props) => {
   const router = useStore((state) => state.router)
   const { route } = props
 
@@ -48,4 +47,4 @@ const TestShader = (props) => {
   )
 }
 
-export default TestShader
+export default Home

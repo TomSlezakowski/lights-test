@@ -6,7 +6,7 @@ import copy from '@/utils/copy'
 import styles from './index.module.scss'
 import routes from '@/data/routes'
 
-const TestShader = dynamic(() => import('@/examples/canvas/test_shader'), {
+const HomeScene = dynamic(() => import('@/scenes/Home'), {
   ssr: false,
 })
 
@@ -17,7 +17,7 @@ const Page = ({ title }) => {
       <div className={styles.HomePage}>
         <SocialLinks content={[...copy('social')]} />
       </div>
-      <TestShader r3f route='/tester' />
+      <HomeScene r3f />
     </>
   )
 }

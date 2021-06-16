@@ -215,8 +215,8 @@ const BaseLights = ({ speed, colors }) => {
         color={0x000000}
         transparent={true}
         depthTest={true}
-         fog
-        lights
+        //fog
+        //lights
       />
     </mesh>
   )

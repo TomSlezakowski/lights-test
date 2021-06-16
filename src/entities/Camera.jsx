@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { PerspectiveCamera } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useEffect, useState } from 'react'
+import { PerspectiveCamera } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import { Vector3 } from 'three'
-import turbulentDistortion from '@/distortion/Turbulent';
+import turbulentDistortion from '@/distortion/Turbulent'
 
 const fov = 45
 
