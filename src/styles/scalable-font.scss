@@ -1,0 +1,37 @@
+$default-font-size-percent: 62.5;
+$default-font-size-px: 10;
+
+// we need to convert percentages so that html font size is set in px, otherwise Safari won't scale below 9px ignoring %
+$percent-to-px-multiplier: $default-font-size-px / $default-font-size-percent;
+
+// ====================================================================
+// RANGES
+// HTML font size will proportionately scale up or down within the allowed range
+// ====================================================================
+
+// below this size we lock font size at its min
+$min-scale-size: 1920;
+
+// above this size we lock font size at its max
+$max-scale-size: 3840;
+
+// ====================================================================
+// CALCULATED VALUES
+// ====================================================================
+
+@mixin scalable-font() {
+  font-size: #{$default-font-size-px}px;
+  $min-size-math: $default-font-size-percent;
+  $variable-size-math: $default-font-size-percent / $min-scale-size * 100;
+  $max-size-math: $default-font-size-percent / $min-scale-size * $max-scale-size;
+
+  @media (min-width: #{$min-scale-size}px) {
+    // proportionately scale font size within range
+    font-size: #{$variable-size-math * $percent-to-px-multiplier}vw;
+  }
+
+  @media (min-width: #{$max-scale-size}px) {
+    // lock font size for max range limit
+    font-size: #{$max-size-math * $percent-to-px-multiplier}px;
+  }
+}

@@ -1,0 +1,5 @@
+export const siteName = 'slaz.io'
+export const siteTitle = 'Creative Technologist & Front-End Developer'
+export const siteAuthor = 'Tom Slezakowski'
+export const titleSeperator = '|'
+export const siteUrl = 'https://www.slaz.io'

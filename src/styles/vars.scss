@@ -1,0 +1,45 @@
+// Variables
+//
+// Add global variables here, color palette, those variables shared by components all applied to global styling
+
+// ====================================================================
+// Breakpoints
+//
+// Window breakpoints
+// ====================================================================
+$breakpoint-tablet: 750px;
+$breakpoint-desktopSm: 1024px;
+$breakpoint-desktopMd: 1440px;
+$breakpoint-desktopLg: 1920px;
+
+// ====================================================================
+// Base palette
+//
+// Grayscale and brand colors for use across the site.
+// ====================================================================
+$white: #fff;
+$black: #000;
+
+$teal: #11ddc4;
+$seafoam: #47d2b4;
+$blue: #2b74ff;
+$violet: #6a48fb;
+$fuschia: #cc4afb;
+$zinc: #c5ef68;
+$coral: #f64c6d;
+$flame: #ff8f33;
+
+// ====================================================================
+// General
+//
+// Global color variables, used usually in sections
+// Global variables used across the web app
+// ====================================================================
+$page-bg-color: $white;
+$element-shadow: 0 px(16) px(16) 0 rgba(0, 0, 0, 0.04);
+$generic-fonts: GT-America-Medium, Helvetica, Arial, sans-serif;
+
+// ====================================================================
+// List of z-index element
+// ====================================================================
+$elements: pages, main-nav, modal, rotate;

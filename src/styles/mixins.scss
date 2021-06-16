@@ -1,0 +1,308 @@
+// Sass Mixins
+//
+// More information about mixins in:
+// http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins
+// Add comment to every function
+@import 'vars';
+
+// Use two pixel values to convert line-height into a unitless number
+// @example scss Input
+//   p {
+//     font-size: 16px;
+//     line-height: line-height(16, 30);
+//   }
+@function line-height($font-size, $line-height) {
+  @if $line-height==normal {
+    @return normal;
+  }
+  @return $line-height / $font-size;
+}
+
+// Use two pixel values to convert letter-spacing into an em value
+// @example scss Input
+//   p {
+//     font-size: 16px;
+//     // letter-spacing: -0.1px;
+//     letter-spacing: letter-spacing(16, -0.1);
+//   }
+@function letter-spacing($font-size, $letter-spacing) {
+  @if $letter-spacing==normal {
+    @return normal;
+  }
+  @return #{$letter-spacing / $font-size}em;
+}
+
+// Define font-size, line-height and letter-spacing in function
+// @example scss Input
+//   p {
+//     // font-size: 16px;
+//     // letter-spacing: -0.1px;
+//     // line-height: 1.5; // This is line-height 24px and font-size: 16px
+//     @include font-size(16, 24, -0.1)
+//   }
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+  font-size: px($font-size);
+  line-height: line-height($font-size, $line-height);
+
+  @if $letter-spacing !=0 {
+    letter-spacing: letter-spacing($font-size, $letter-spacing);
+  }
+}
+
+/// Improve animation performance for containers
+/// @example scss Input
+///   .card {
+///     @include gpu();
+///   }
+@mixin gpu {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  .safari & {
+    perspective: none; // otherwise text and icons become blurry
+  }
+}
+
+/// Set exactly the same width and height of a component, avoid repeat the same dimension
+/// @parameter {Measure unit} $width - Specify width of the box
+/// @parameter {Measure unit} $height [$width] - Specify height of the box, the default value is the width
+/// @example scss Input
+///   .card {
+///     @include box(3.2rem);
+///   }
+///   .card-another {
+///     @include box(3.2rem, 2rem);
+///   }
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/// Convert the pixels to rem for in a specific resolution, usually 1440px wide
+/// @example scss Input
+///   section {
+///     height: px(200);
+///   }
+@function px($px) {
+  @return $px * 0.1rem;
+}
+
+/// Set top and left to 0
+/// @example scss Input
+///   element {
+///     @include position-0;
+///   }
+@mixin position-0 {
+  top: 0;
+  left: 0;
+}
+
+/// Set full size of box and position
+/// @parameter {string} $pos - one of relative, absolute, fixed. relative by default
+/// @example scss Input
+///   element {
+///     @include position-100(absolute);
+///   }
+@mixin position-100($pos: 'relative') {
+  position: $pos;
+  @include position-0;
+  @include box(100%);
+}
+
+/// Set display flex and center children horizontally and vertically
+/// @example scss Input
+///   element {
+///     @include flex-center;
+///   }
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Set display flex and center children vertically
+/// @example scss Input
+///   element {
+///     @include flex-center-vert;
+///   }
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+/// Set display flex and center children horizontally
+/// @example scss Input
+///   element {
+///     @include flex-center-horiz;
+///   }
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+/// Center its element (horizontally and vertically) by using transform
+/// @example scss Input
+///   element {
+///     @include transform-center;
+///   }
+@mixin transform-center {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+/// Set vertical center of its element
+/// @example scss Input
+///   element {
+///     @include transform-center-vert;
+///   }
+@mixin transform-center-vert {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+/// Set horizontal center of its element
+/// @example scss Input
+///   element {
+///     @include transform-center-horiz;
+///   }
+@mixin transform-center-horiz {
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+/// Set z-index value in order of $element variable
+/// @example scss Input
+///   element {
+///     @include z-index(preloader);
+///   }
+@mixin z-index($id) {
+  z-index: index($elements, $id);
+}
+
+/// Set media queries
+/// @example scss Input
+///   element {
+///     [...phone styles....]
+///     @include media-tablet {
+///        [...tablet styles...]
+///     }
+///     @include media-desktopSm {
+///        [...desktop styles...]
+///     }
+///   }
+@mixin media-mobile {
+  @media (max-width: #{$breakpoint-tablet - 1}) {
+    @content;
+  }
+}
+@mixin media-tablet {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+@mixin media-desktopSm {
+  @media (min-width: #{$breakpoint-desktopSm}) {
+    @content;
+  }
+}
+@mixin media-desktopMd {
+  @media (min-width: #{$breakpoint-desktopMd}) {
+    @content;
+  }
+}
+@mixin media-desktopLg {
+  @media (min-width: #{$breakpoint-desktopLg}) {
+    @content;
+  }
+}
+
+/// Reset button's look
+/// @example scss Input
+///   button {
+///     @include reset-button;
+///   }
+@mixin reset-button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  text-align: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  display: inline-block;
+  margin: 0;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: currentColor;
+}
+
+/// Linear gradient generator
+/// @parameter $from - Color from
+/// @parameter $to - Color to
+/// @parameter $property - Background as default
+/// @example scss Input
+///   button {
+///     @include linear-gradient;
+///   }
+@mixin linear-gradient($from, $to, $property: background) {
+  #{$property}: linear-gradient(122.79deg, $from 0%, $to 56.88%);
+}
+
+/// Aspect ratio trick
+/// @example scss Input
+///   element {
+///     @include aspect-ratio(827, 237);
+///   }
+@mixin aspect-ratio($width, $height, $prop: padding-top) {
+  contain: none;
+  &::before {
+    content: '';
+    display: block;
+    #{$prop}: ($height/$width * 100) * 1%;
+  }
+}
+
+/// Shorthand to use CSS var --vh
+/// @example scss Input
+///   section {
+///     height: vh(5);
+///   }
+@function vh($vh) {
+  @return calc(var(--vh) * #{$vh} - var(--body-margin-top));
+}
+
+/// Breakout of a padded container
+/// @example scss Input
+///   element {
+///     @include full-width-breakout;
+///   }
+@mixin full-width-breakout {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+}
+
+/// Hide element
+/// @example scss Input
+///   element {
+///     @include autoAlpha-0;
+///   }
+@mixin autoAlpha-0 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/// Show element
+/// @example scss Input
+///   element {
+///     @include autoAlpha-1;
+///   }
+@mixin autoAlpha-1 {
+  visibility: visible;
+  opacity: 1;
+}

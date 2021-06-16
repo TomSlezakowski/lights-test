@@ -1,0 +1,86 @@
+// Typography
+@mixin font-light() {
+  font-family: 'GT-America-Light', #{$generic-fonts};
+}
+
+@mixin font-medium() {
+  font-family: 'GT-America-Medium', #{$generic-fonts};
+}
+
+@mixin font-expanded-medium() {
+  font-family: 'GT-America-Expanded-Medium', #{$generic-fonts};
+}
+
+@mixin font-expanded-bold() {
+  font-family: 'GT-America-Expanded-Bold', #{$generic-fonts};
+}
+
+// Typography Types
+@mixin font-brand-title {
+  text-transform: uppercase;
+  @include font-size(21, 27, 1.5);
+  @include font-expanded-bold;
+
+  @include media-desktopSm {
+    @include font-size(33, 38, 1.5);
+  }
+}
+
+@mixin font-overline {
+  text-transform: uppercase;
+  @include font-size(12, 20, 1.5);
+  @include font-expanded-medium;
+}
+
+@mixin font-title {
+  @include font-size(22, 28.6);
+  @include font-light;
+
+  @include media-desktopSm {
+    @include font-size(25, 32.5);
+  }
+}
+
+@mixin font-title-weighted {
+  @include font-size(25, 32.5);
+  @include font-medium;
+  font-weight: 400;
+}
+
+@mixin font-body {
+  @include font-size(18, 23.25);
+  @include font-light;
+}
+
+@mixin font-body-weighted {
+  @include font-size(18, 23.25);
+  @include font-medium;
+  font-weight: 400;
+}
+
+@mixin font-legal {
+  @include font-size(12, 16);
+  @include font-light;
+}
+
+@mixin font-legal-weighted {
+  @include font-size(12, 16);
+  @include font-medium;
+  font-weight: 400;
+}
+
+@mixin font-cta {
+  text-transform: uppercase;
+  @include font-size(10, 12, 1);
+  @include font-expanded-medium;
+
+  @include media-desktopSm {
+    @include font-size(9, 12.11, 1);
+  }
+}
+
+@mixin font-digits {
+  @include font-size(132, 132, 1);
+  @include font-medium;
+  font-weight: 700;
+}

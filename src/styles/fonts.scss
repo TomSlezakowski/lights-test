@@ -1,0 +1,45 @@
+// Fonts
+//
+// Location of all the font-families and font-related css
+//
+// Best practices:
+// 1. Avoid load as many fonts as possible, e.x font styles, font families
+// 2. Optimize the font, remove the characters set that the site won't use: languages
+// 3. Include the unicode range in case you couldn't remove the characters. Included just Latin by default
+// 4. Change fonts just changing the font-weight
+
+@import 'vars';
+
+$base-path: '../../public/fonts/' !default;
+
+@font-face {
+  font-family: 'GT-America-Light';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url('#{$base-path}GT-America/GT-America-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT-America-Medium';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url('#{$base-path}GT-America/GT-America-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT-America-Expanded-Medium';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url('#{$base-path}GT-America/GT-America-Expanded-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT-America-Expanded-Bold';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('#{$base-path}GT-America/GT-America-Expanded-Bold.woff2') format('woff2');
+}

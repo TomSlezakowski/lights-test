@@ -1,0 +1,39 @@
+@import 'shared';
+
+.Custom404 {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  color: red;
+
+  .section {
+    @include flex-center;
+    @include box(100%, vh(100));
+
+    .contentContainer {
+      @include transform-center;
+      max-width: px(600);
+      position: absolute;
+      top: 50%;
+
+      @include media-mobile {
+        width: 80%;
+      }
+
+      .eyebrow {
+        @include font-overline;
+        font-weight: 500;
+      }
+
+      .heading {
+        @include font-brand-title;
+        padding-bottom: px(10);
+      }
+
+      .content {
+        @include font-body;
+        padding-bottom: px(30);
+      }
+    }
+  }
+}
